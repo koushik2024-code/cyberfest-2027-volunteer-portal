@@ -5,14 +5,15 @@ import { authenticateAdmin, getAdminSession, ADMIN_COOKIE_NAME } from '@/lib/aut
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => null);
-    if (!body?.email || !body?.password) {
+    if (!body?.password) {
       return NextResponse.json(
-        { success: false, error: 'Email and password are required.' },
+        { success: false, error: 'Password is required to access the admin command center.' },
         { status: 400 }
       );
     }
 
-    const { email, password } = body;
+    const email = body?.email || 'admin@cyberfest2027.internal';
+    const { password } = body;
     const result = await authenticateAdmin(email, password);
 
     if (!result.success || !result.token) {

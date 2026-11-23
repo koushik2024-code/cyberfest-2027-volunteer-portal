@@ -135,13 +135,13 @@ async function main() {
     // 6. Admin Authentication
     const badLoginRes = await request('/api/admin/auth', {
       method: 'POST',
-      body: { email: 'admin@cbit.ac.in', password: 'WrongPassword123' },
+      body: { password: 'WrongPassword123' },
     });
     assert(badLoginRes.status === 401, `Invalid admin credentials rejected with 401 Unauthorized`);
 
     const goodLoginRes = await request('/api/admin/auth', {
       method: 'POST',
-      body: { email: 'admin@cbit.ac.in', password: 'CyberFest2027!Admin' },
+      body: { password: '123456789' },
     });
     assert(goodLoginRes.status === 200, `Valid admin credentials accepted with 200 OK`);
 

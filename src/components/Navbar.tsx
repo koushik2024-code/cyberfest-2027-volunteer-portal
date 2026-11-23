@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Shield, Lock } from 'lucide-react';
+import { Lock } from 'lucide-react';
 import { SystemSettings } from '@/types';
 
 export default function Navbar() {
@@ -28,19 +29,35 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 w-full border-b border-cyan-500/20 bg-slate-950/85 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo & Brand: Volunteer Recruitment */}
+          {/* Logo & Brand: DDC & CyberFest Logos */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative flex items-center justify-center w-11 h-11 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/40 group-hover:border-cyan-400 transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.25)]">
-              <Shield className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
-              <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+            <div className="flex items-center space-x-1.5 shrink-0">
+              <div className="relative w-10 h-10 rounded-full bg-slate-900 border border-cyan-500/40 group-hover:border-cyan-400 transition-all duration-300 shadow-[0_0_12px_rgba(0,240,255,0.25)] overflow-hidden">
+                <Image
+                  src="/images/ddc-logo-circle.png"
+                  alt="DDC Logo"
+                  fill
+                  className="object-contain p-0.5"
+                  priority
+                />
+              </div>
+              <div className="relative w-10 h-10 rounded-full bg-slate-900 border border-cyan-500/40 group-hover:border-cyan-400 transition-all duration-300 shadow-[0_0_12px_rgba(0,240,255,0.25)] overflow-hidden">
+                <Image
+                  src="/images/cyberfest-logo-circle.png"
+                  alt="CyberFest 2027 Logo"
+                  fill
+                  className="object-contain p-0.5"
+                  priority
+                />
+              </div>
             </div>
             <div className="flex flex-col">
               <div className="flex items-center space-x-2">
-                <span className="text-lg sm:text-xl font-extrabold tracking-wider text-white font-mono uppercase">
+                <span className="text-base sm:text-xl font-extrabold tracking-wider text-white font-mono uppercase">
                   VOLUNTEER <span className="text-cyan-400">RECRUITMENT</span>
                 </span>
               </div>
-              <span className="text-[11px] text-slate-400 font-mono tracking-tight">
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-mono tracking-tight">
                 CYBERFEST 2027 • DDC CBIT HYDERABAD
               </span>
             </div>

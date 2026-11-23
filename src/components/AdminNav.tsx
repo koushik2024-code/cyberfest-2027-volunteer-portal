@@ -2,13 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
   Users,
   BarChart3,
   LogOut,
-  Shield,
   Sliders,
   ExternalLink,
 } from 'lucide-react';
@@ -37,10 +37,25 @@ export default function AdminNav() {
     <div className="w-full bg-slate-950/80 border-b border-cyan-500/20 mb-8 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between py-4 gap-4">
-          {/* Admin badge */}
+          {/* Admin badge with Official Logos */}
           <div className="flex items-center space-x-3">
-            <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
-              <Shield className="w-5 h-5" />
+            <div className="flex items-center space-x-1.5 shrink-0">
+              <div className="relative w-9 h-9 rounded-full bg-slate-900 border border-cyan-500/30 overflow-hidden">
+                <Image
+                  src="/images/ddc-logo-circle.png"
+                  alt="DDC"
+                  fill
+                  className="object-contain p-0.5"
+                />
+              </div>
+              <div className="relative w-9 h-9 rounded-full bg-slate-900 border border-cyan-500/30 overflow-hidden">
+                <Image
+                  src="/images/cyberfest-logo-circle.png"
+                  alt="CyberFest 2027"
+                  fill
+                  className="object-contain p-0.5"
+                />
+              </div>
             </div>
             <div>
               <div className="flex items-center space-x-2">

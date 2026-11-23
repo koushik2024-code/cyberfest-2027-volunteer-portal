@@ -46,6 +46,7 @@ Thumbs.db
 *.png
 *.jpg
 *.jpeg
+!public/images/*
 DDC_Meetings_Drive_Folders/
 Events_extracted/
 test_tool_write.txt

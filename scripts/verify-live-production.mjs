@@ -105,18 +105,18 @@ async function runLiveTests() {
   const unauthRes = await request('/api/admin/stats');
   assert(unauthRes.status === 401, `Unauthenticated visitor blocked from /api/admin/stats (401 Unauthorized)`);
 
-  // 8. Admin Authentication
+  // 8. Admin Authentication (Only Password Required)
   const badLoginRes = await request('/api/admin/auth', {
     method: 'POST',
-    body: { email: 'admin@cbit.ac.in', password: 'InvalidPassword' },
+    body: { password: 'wrongpassword' },
   });
   assert(badLoginRes.status === 401, `Invalid admin credentials rejected with 401 Unauthorized`);
 
   const goodLoginRes = await request('/api/admin/auth', {
     method: 'POST',
-    body: { email: 'admin@cbit.ac.in', password: 'CyberFest2027!Admin' },
+    body: { password: '123456789' },
   });
-  assert(goodLoginRes.status === 200, `Admin credentials authenticated successfully with 200 OK`);
+  assert(goodLoginRes.status === 200, `Admin password authenticated successfully with 200 OK`);
 
   const setCookie = goodLoginRes.headers.get('set-cookie');
   const cookieHeader = setCookie?.split(';')[0] || '';
@@ -151,6 +151,13 @@ async function runLiveTests() {
   assert(exportRes.status === 200, `GET /api/admin/export returns 200 OK`);
   assert(exportRes.text.includes('Application ID,Full Name,Roll Number'), `CSV export contains headers`);
   assert(exportRes.text.includes(testRoll), `CSV export contains candidate roll number`);
+
+  // 12.5 Cleanup Test Application to keep original data only
+  const deleteRes = await request(`/api/applications/${appId}`, {
+    method: 'DELETE',
+    headers: { Cookie: cookieHeader },
+  });
+  assert(deleteRes.status === 200, `Cleanup test record succeeded (admin panel kept with original data only)`);
 
   // 13. Admin Dashboard & Registry Pages
   const adminDashRes = await request('/admin/dashboard');

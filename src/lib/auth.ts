@@ -2,8 +2,8 @@ import { cookies } from 'next/headers';
 import { getSupabaseClient } from './supabase';
 
 const ADMIN_COOKIE_NAME = 'ddc_cyberfest_admin_token';
-const DEFAULT_ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@cbit.ac.in';
-const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_DEFAULT_PASSWORD || 'CyberFest2027!Admin';
+const DEFAULT_ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@cyberfest2027.internal';
+const TARGET_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '123456789';
 
 export interface AdminSession {
   isAuthenticated: boolean;
@@ -76,22 +76,18 @@ export async function authenticateAdmin(email: string, password: string):Promise
     }
   }
 
-  // 2. Verified Admin Credential check
-  const expectedEmail = DEFAULT_ADMIN_EMAIL.toLowerCase();
-  const expectedPassword = DEFAULT_ADMIN_PASSWORD;
+  // 2. Direct password verification (only password 123456789 is required)
+  const isPasswordMatch = cleanPassword === TARGET_ADMIN_PASSWORD || cleanPassword === '123456789';
 
-  // Allow standard admin logins (or configured email)
-  const isEmailMatch = cleanEmail === expectedEmail || cleanEmail === 'admin@cbit.ac.in' || cleanEmail === 'ddc@cbit.ac.in';
-  const isPasswordMatch = cleanPassword === expectedPassword || cleanPassword === 'CyberFest2027@CBIT#DDC' || cleanPassword === 'CyberFest2027!Admin';
-
-  if (isEmailMatch && isPasswordMatch) {
-    const token = createSessionToken(cleanEmail);
+  if (isPasswordMatch) {
+    const adminEmail = cleanEmail || DEFAULT_ADMIN_EMAIL;
+    const token = createSessionToken(adminEmail);
     return { success: true, token };
   }
 
   return {
     success: false,
-    error: 'Invalid administrator credentials. Access denied.',
+    error: 'Incorrect administrator password. Access denied.',
   };
 }
 

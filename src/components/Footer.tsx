@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { Shield, Terminal, Mail, MapPin } from 'lucide-react';
+import Image from 'next/image';
+import { Terminal, Mail, MapPin } from 'lucide-react';
 import { EVENT_DETAILS } from '@/lib/constants';
 
 export default function Footer() {
@@ -11,8 +12,23 @@ export default function Footer() {
           {/* Column 1: Organization & Identity */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
-                <Shield className="w-5 h-5 text-cyan-400" />
+              <div className="flex items-center space-x-1.5 shrink-0">
+                <div className="relative w-9 h-9 rounded-full bg-slate-900 border border-cyan-500/30 overflow-hidden">
+                  <Image
+                    src="/images/ddc-logo-circle.png"
+                    alt="DDC"
+                    fill
+                    className="object-contain p-0.5"
+                  />
+                </div>
+                <div className="relative w-9 h-9 rounded-full bg-slate-900 border border-cyan-500/30 overflow-hidden">
+                  <Image
+                    src="/images/cyberfest-logo-circle.png"
+                    alt="CyberFest 2027"
+                    fill
+                    className="object-contain p-0.5"
+                  />
+                </div>
               </div>
               <div>
                 <span className="text-base font-extrabold text-white font-mono tracking-wider uppercase">

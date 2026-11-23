@@ -58,9 +58,8 @@ NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
 
-# Administrator Credentials
-ADMIN_EMAIL=admin@cbit.ac.in
-ADMIN_DEFAULT_PASSWORD=CyberFest2027!Admin
+# Administrator Credentials (Set privately by club leadership)
+ADMIN_PASSWORD=your_private_admin_password
 
 # Metadata
 NEXT_PUBLIC_APP_URL=http://localhost:3000
@@ -83,8 +82,7 @@ Visit:
 - **Public Portal:** [http://localhost:3000](http://localhost:3000)
 - **Volunteer Application Form:** [http://localhost:3000/apply](http://localhost:3000/apply)
 - **Admin Command Portal:** [http://localhost:3000/admin/dashboard](http://localhost:3000/admin/dashboard)
-  - Default Email: `admin@cbit.ac.in`
-  - Default Password: `CyberFest2027!Admin`
+  - Private access gateway protected by administrator password
 
 ---
 

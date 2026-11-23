@@ -17,6 +17,7 @@ import {
   Sparkles,
   Loader2,
 } from 'lucide-react';
+import Image from 'next/image';
 import confetti from 'canvas-confetti';
 import { Application } from '@/types';
 import { formatToIST } from '@/lib/dateUtils';
@@ -74,10 +75,29 @@ function SuccessContent() {
   return (
     <div className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto space-y-8">
-        {/* Success Header */}
+        {/* Success Header with Official Logos */}
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-cyan-500/10 border border-cyan-400 text-cyan-400 shadow-[0_0_30px_rgba(0,240,255,0.4)] animate-bounce">
-            <CheckCircle2 className="w-10 h-10" />
+          <div className="flex items-center justify-center space-x-4">
+            <div className="relative w-12 h-12 rounded-full p-0.5 bg-slate-900 border border-cyan-500/40 shadow-[0_0_15px_rgba(0,240,255,0.3)]">
+              <Image
+                src="/images/ddc-logo-circle.png"
+                alt="Digital Defence Club"
+                fill
+                className="object-contain p-0.5 rounded-full"
+              />
+            </div>
+            <div className="relative w-12 h-12 rounded-full p-0.5 bg-slate-900 border border-cyan-500/40 shadow-[0_0_15px_rgba(0,240,255,0.3)]">
+              <Image
+                src="/images/cyberfest-logo-circle.png"
+                alt="CyberFest 2027"
+                fill
+                className="object-contain p-0.5 rounded-full"
+              />
+            </div>
+          </div>
+
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-cyan-500/10 border border-cyan-400 text-cyan-400 shadow-[0_0_30px_rgba(0,240,255,0.4)] animate-bounce">
+            <CheckCircle2 className="w-8 h-8" />
           </div>
 
           <div className="space-y-2">

@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import Image from 'next/image';
 import { Shield, CheckCircle2, Loader2 } from 'lucide-react';
 import ApplicationForm from '@/components/ApplicationForm';
 import { EVENT_DETAILS } from '@/lib/constants';
@@ -7,8 +8,30 @@ export default function HomePage() {
   return (
     <div className="py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto space-y-6">
-        {/* Header Branding */}
-        <div className="text-center space-y-3">
+        {/* Header Branding with Official Logos */}
+        <div className="text-center space-y-4">
+          <div className="flex items-center justify-center space-x-5">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-slate-900/90 border-2 border-cyan-500/40 shadow-[0_0_25px_rgba(0,240,255,0.35)]">
+              <Image
+                src="/images/ddc-logo-circle.png"
+                alt="Digital Defence Club (DDC) Logo"
+                fill
+                className="object-contain p-1 rounded-full"
+                priority
+              />
+            </div>
+            <div className="h-10 w-[1px] bg-cyan-500/30" />
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-slate-900/90 border-2 border-cyan-500/40 shadow-[0_0_25px_rgba(0,240,255,0.35)]">
+              <Image
+                src="/images/cyberfest-logo-circle.png"
+                alt="CyberFest 2027 Logo"
+                fill
+                className="object-contain p-1 rounded-full"
+                priority
+              />
+            </div>
+          </div>
+
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-xs font-mono text-cyan-300 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
             <Shield className="w-3.5 h-3.5 text-cyan-400" />
             <span>{EVENT_DETAILS.organizer} • {EVENT_DETAILS.institution}</span>

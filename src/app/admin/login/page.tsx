@@ -3,23 +3,20 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
-  Shield,
   Lock,
-  Mail,
   Eye,
   EyeOff,
-  ArrowRight,
   AlertCircle,
   Loader2,
   KeyRound,
-  Info,
+  ShieldCheck,
 } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const router = useRouter();
 
-  const [email, setEmail] = useState('admin@cbit.ac.in');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,8 +26,8 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setError(null);
 
-    if (!email || !password) {
-      setError('Please provide both administrator email and access password.');
+    if (!password) {
+      setError('Please enter the administrator access password.');
       return;
     }
 
@@ -40,7 +37,7 @@ export default function AdminLoginPage() {
       const res = await fetch('/api/admin/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ password }),
       });
 
       const data = await res.json();
@@ -60,28 +57,40 @@ export default function AdminLoginPage() {
     }
   };
 
-  const fillDefaultCredentials = () => {
-    setEmail('admin@cbit.ac.in');
-    setPassword('CyberFest2027!Admin');
-  };
-
   return (
     <div className="min-h-[75vh] flex items-center justify-center px-4 py-16">
       <div className="max-w-md w-full space-y-6">
-        {/* Header */}
+        {/* Header with Official DDC & CyberFest Logos */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shadow-[0_0_25px_rgba(0,240,255,0.25)]">
-            <Shield className="w-8 h-8" />
+          <div className="flex items-center justify-center space-x-4">
+            <div className="relative w-14 h-14 rounded-full p-1 bg-slate-900 border border-cyan-500/40 shadow-[0_0_20px_rgba(0,240,255,0.3)]">
+              <Image
+                src="/images/ddc-logo-circle.png"
+                alt="Digital Defence Club (DDC) Logo"
+                fill
+                className="object-contain p-0.5 rounded-full"
+                priority
+              />
+            </div>
+            <div className="relative w-14 h-14 rounded-full p-1 bg-slate-900 border border-cyan-500/40 shadow-[0_0_20px_rgba(0,240,255,0.3)]">
+              <Image
+                src="/images/cyberfest-logo-circle.png"
+                alt="CyberFest 2027 Logo"
+                fill
+                className="object-contain p-0.5 rounded-full"
+                priority
+              />
+            </div>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold font-mono text-white tracking-wide">
-            DDC ADMIN LOGIN
+            ADMIN GATEWAY
           </h1>
           <p className="text-xs text-slate-400 font-mono">
-            CyberFest 2027 • Digital Defence Club Security Gateway
+            CyberFest 2027 • Digital Defence Club Security Verification
           </p>
         </div>
 
-        {/* Login Card */}
+        {/* Login Card (Only Password Required) */}
         <form
           onSubmit={handleLogin}
           className="p-8 rounded-2xl bg-slate-900/80 border border-cyan-500/30 shadow-[0_0_40px_rgba(0,240,255,0.1)] backdrop-blur-md space-y-5"
@@ -95,40 +104,20 @@ export default function AdminLoginPage() {
 
           <div>
             <label
-              htmlFor="adminEmail"
-              className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-300 mb-1.5"
-            >
-              Administrator Email
-            </label>
-            <div className="relative">
-              <input
-                id="adminEmail"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@cbit.ac.in"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 font-mono text-sm focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/30 transition-all"
-              />
-              <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
-            </div>
-          </div>
-
-          <div>
-            <label
               htmlFor="adminPassword"
               className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-300 mb-1.5"
             >
-              Secret Access Key
+              Access Password
             </label>
             <div className="relative">
               <input
                 id="adminPassword"
                 type={showPassword ? 'text' : 'password'}
                 required
+                autoFocus
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••••••"
+                placeholder="Enter password"
                 className="w-full pl-10 pr-11 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 font-mono text-sm focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/30 transition-all"
               />
               <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
@@ -145,12 +134,12 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 px-4 rounded-xl font-mono font-bold text-xs uppercase tracking-wider transition-all duration-300 bg-cyan-400 hover:bg-cyan-300 text-black flex items-center justify-center space-x-2 shadow-[0_0_25px_rgba(0,240,255,0.3)] disabled:opacity-50"
+            className="w-full py-3.5 px-4 rounded-xl font-mono font-bold text-xs uppercase tracking-wider transition-all duration-300 bg-cyan-400 hover:bg-cyan-300 text-black flex items-center justify-center space-x-2 shadow-[0_0_25px_rgba(0,240,255,0.3)] disabled:opacity-50 cursor-pointer"
           >
             {isLoading ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                <span>AUTHENTICATING PRIVILEGES...</span>
+                <span>VERIFYING ACCESS...</span>
               </>
             ) : (
               <>
@@ -160,25 +149,9 @@ export default function AdminLoginPage() {
             )}
           </button>
 
-          {/* Quick Demo Credentials Helper */}
-          <div className="pt-3 border-t border-slate-800 text-[11px] font-mono text-slate-400">
-            <div className="flex items-center justify-between">
-              <span className="flex items-center space-x-1 text-cyan-400">
-                <Info className="w-3.5 h-3.5" />
-                <span>Default Credentials:</span>
-              </span>
-              <button
-                type="button"
-                onClick={fillDefaultCredentials}
-                className="text-cyan-400 hover:text-cyan-300 underline font-semibold"
-              >
-                Auto-Fill Demo
-              </button>
-            </div>
-            <p className="mt-1 text-slate-500">
-              Email: <code className="text-slate-300">admin@cbit.ac.in</code> | Password:{' '}
-              <code className="text-slate-300">CyberFest2027!Admin</code>
-            </p>
+          <div className="flex items-center justify-center space-x-2 pt-2 text-[11px] font-mono text-slate-500">
+            <ShieldCheck className="w-3.5 h-3.5 text-cyan-500" />
+            <span>Authorized Committee &amp; Core Executive Access</span>
           </div>
         </form>
 
@@ -187,7 +160,7 @@ export default function AdminLoginPage() {
             href="/"
             className="text-xs font-mono text-slate-500 hover:text-cyan-400 transition-colors"
           >
-            ← Return to Public Portal
+            ← Return to Registration Portal
           </Link>
         </div>
       </div>
