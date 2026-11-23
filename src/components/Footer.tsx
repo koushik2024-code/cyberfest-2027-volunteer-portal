@@ -16,7 +16,7 @@ export default function Footer() {
               </div>
               <div>
                 <span className="text-base font-extrabold text-white font-mono tracking-wider uppercase">
-                  VOLUNTEER <span className="text-cyan-400">RECRUITMENTS</span>
+                  VOLUNTEER <span className="text-cyan-400">RECRUITMENT</span>
                 </span>
                 <p className="text-xs text-slate-400 font-mono">
                   {EVENT_DETAILS.name} • {EVENT_DETAILS.organizer}

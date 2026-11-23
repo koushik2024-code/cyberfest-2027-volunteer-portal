@@ -28,7 +28,7 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 w-full border-b border-cyan-500/20 bg-slate-950/85 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo & Brand: Volunteer Recruitments */}
+          {/* Logo & Brand: Volunteer Recruitment */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative flex items-center justify-center w-11 h-11 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/40 group-hover:border-cyan-400 transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.25)]">
               <Shield className="w-6 h-6 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
@@ -37,7 +37,7 @@ export default function Navbar() {
             <div className="flex flex-col">
               <div className="flex items-center space-x-2">
                 <span className="text-lg sm:text-xl font-extrabold tracking-wider text-white font-mono uppercase">
-                  VOLUNTEER <span className="text-cyan-400">RECRUITMENTS</span>
+                  VOLUNTEER <span className="text-cyan-400">RECRUITMENT</span>
                 </span>
               </div>
               <span className="text-[11px] text-slate-400 font-mono tracking-tight">

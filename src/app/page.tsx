@@ -15,7 +15,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black font-mono tracking-tight text-white uppercase">
-            VOLUNTEER <span className="text-cyan-400 drop-shadow-[0_0_20px_rgba(0,240,255,0.7)]">RECRUITMENTS</span>
+            VOLUNTEER <span className="text-cyan-400 drop-shadow-[0_0_20px_rgba(0,240,255,0.7)]">RECRUITMENT</span>
           </h1>
 
           <div className="space-y-1">
