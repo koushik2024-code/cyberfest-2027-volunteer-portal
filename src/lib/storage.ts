@@ -20,53 +20,7 @@ const DEFAULT_SETTINGS: SystemSettings = {
   show_live_count: true,
 };
 
-const SEED_APPLICATIONS: Application[] = [
-  {
-    id: 'b1a2c3d4-1111-2222-3333-444455556661',
-    application_id: 'CF27-VOL-982143',
-    full_name: 'Aadarsh Sharma',
-    roll_number: '160123733045',
-    areas_of_interest: ['Technical', 'Events'],
-    application_status: 'Pending',
-    created_at: new Date(Date.now() - 3 * 3600 * 1000).toISOString(),
-  },
-  {
-    id: 'b1a2c3d4-1111-2222-3333-444455556662',
-    application_id: 'CF27-VOL-847291',
-    full_name: 'Sneha Reddy',
-    roll_number: '160123737089',
-    areas_of_interest: ['Design', 'Video Editing'],
-    application_status: 'Shortlisted',
-    created_at: new Date(Date.now() - 24 * 3600 * 1000).toISOString(),
-  },
-  {
-    id: 'b1a2c3d4-1111-2222-3333-444455556663',
-    application_id: 'CF27-VOL-651239',
-    full_name: 'Rohit Varma',
-    roll_number: '160122748012',
-    areas_of_interest: ['Public Relations (PR)', 'External Affairs'],
-    application_status: 'Selected',
-    created_at: new Date(Date.now() - 48 * 3600 * 1000).toISOString(),
-  },
-  {
-    id: 'b1a2c3d4-1111-2222-3333-444455556664',
-    application_id: 'CF27-VOL-432890',
-    full_name: 'Ananya Gupta',
-    roll_number: '160124733102',
-    areas_of_interest: ['Technical', 'Documentation'],
-    application_status: 'Pending',
-    created_at: new Date(Date.now() - 5 * 3600 * 1000).toISOString(),
-  },
-  {
-    id: 'b1a2c3d4-1111-2222-3333-444455556665',
-    application_id: 'CF27-VOL-771923',
-    full_name: 'Karthik Rao',
-    roll_number: '160123735067',
-    areas_of_interest: ['Sponsorship', 'External Affairs'],
-    application_status: 'Pending',
-    created_at: new Date(Date.now() - 6 * 3600 * 1000).toISOString(),
-  },
-];
+const SEED_APPLICATIONS: Application[] = [];
 
 // Helper to ensure local disk data directory exists
 function ensureDataDir() {

@@ -7,7 +7,7 @@ export const EVENT_DETAILS = {
   organizer: 'Digital Defence Club (DDC)',
   institution: 'Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad',
   venue: 'CBIT Campus, Gandipet, Hyderabad - 500075',
-  academicGuidance: 'Jointly guided by the Departments of CET, AI&DS, and IT',
+  academicGuidance: '',
 };
 
 export interface DepartmentInfo {
@@ -133,7 +133,7 @@ export const DEPARTMENTS: DepartmentInfo[] = [
     description:
       'Act as the academic and administrative backbone. Author official institutional proposals, budget requisitions, venue allocations, and accredited post-event IQAC reports.',
     responsibilities: [
-      'Drafting official permission letters through HoD CET, AI&DS, and IT to Principal',
+      'Drafting official permission letters and proposals to institutional leadership',
       'Preparing budget estimation sheets, venue requisition letters, and OD circulars',
       'Recording detailed Minutes of Meetings (MoM) and maintaining central registers',
       'Compiling comprehensive post-event compliance reports for NAAC / NBA / IQAC',
@@ -151,7 +151,7 @@ export const WHY_JOIN_US = [
   },
   {
     title: 'Passionate Technical Community',
-    description: 'Work alongside elite student ethical hackers, CTF players, developers, and AI researchers across CET, AI&DS, and IT.',
+    description: 'Work alongside elite student ethical hackers, CTF players, developers, and AI researchers at CBIT.',
     iconName: 'Users',
   },
   {

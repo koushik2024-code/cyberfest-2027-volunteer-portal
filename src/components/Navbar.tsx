@@ -3,13 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { Lock } from 'lucide-react';
 import { SystemSettings } from '@/types';
 
 export default function Navbar() {
   const [settings, setSettings] = useState<SystemSettings | null>(null);
-  const pathname = usePathname();
 
   useEffect(() => {
     fetch('/api/admin/settings')
@@ -23,28 +20,27 @@ export default function Navbar() {
   }, []);
 
   const isOpen = settings ? settings.is_open : true;
-  const isAdminPage = pathname.startsWith('/admin');
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-cyan-500/20 bg-slate-950/85 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo & Brand: DDC & CyberFest Logos */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="flex items-center space-x-1.5 shrink-0">
-              <div className="relative w-10 h-10 rounded-full bg-slate-900 border border-cyan-500/40 group-hover:border-cyan-400 transition-all duration-300 shadow-[0_0_12px_rgba(0,240,255,0.25)] overflow-hidden">
+    <nav className="sticky top-0 z-50 w-full bg-slate-950/80 backdrop-blur-xl border-b border-white/[0.06]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo & Brand */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="flex items-center gap-1.5">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden ring-1 ring-white/10 group-hover:ring-cyan-400/40 transition-all">
                 <Image
                   src="/images/ddc-logo-circle.png"
-                  alt="DDC Logo"
+                  alt="DDC"
                   fill
                   className="object-contain p-0.5"
                   priority
                 />
               </div>
-              <div className="relative w-10 h-10 rounded-full bg-slate-900 border border-cyan-500/40 group-hover:border-cyan-400 transition-all duration-300 shadow-[0_0_12px_rgba(0,240,255,0.25)] overflow-hidden">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden ring-1 ring-white/10 group-hover:ring-cyan-400/40 transition-all">
                 <Image
                   src="/images/cyberfest-logo-circle.png"
-                  alt="CyberFest 2027 Logo"
+                  alt="CyberFest 2027"
                   fill
                   className="object-contain p-0.5"
                   priority
@@ -52,43 +48,31 @@ export default function Navbar() {
               </div>
             </div>
             <div className="flex flex-col">
-              <div className="flex items-center space-x-2">
-                <span className="text-base sm:text-xl font-extrabold tracking-wider text-white font-mono uppercase">
-                  VOLUNTEER <span className="text-cyan-400">RECRUITMENT</span>
-                </span>
-              </div>
-              <span className="text-[10px] sm:text-[11px] text-slate-400 font-mono tracking-tight">
-                CYBERFEST 2027 • DDC CBIT HYDERABAD
+              <span className="text-sm font-semibold text-white tracking-wide">
+                Volunteer <span className="text-cyan-400">Recruitment</span>
+              </span>
+              <span className="text-[10px] text-slate-500 tracking-tight">
+                CyberFest 2027 • DDC CBIT
               </span>
             </div>
           </Link>
 
-          {/* Right Header Status & Admin Portal */}
-          <div className="flex items-center space-x-4">
-            {/* Recruitment Status Pill */}
-            <div className="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800">
-              <span
-                className={`w-2 h-2 rounded-full ${
-                  isOpen ? 'bg-emerald-400 animate-ping' : 'bg-rose-500'
-                }`}
-              />
-              <span
-                className={`text-xs font-mono font-semibold ${
-                  isOpen ? 'text-emerald-400' : 'text-rose-400'
-                }`}
-              >
-                {isOpen ? 'APPLICATIONS OPEN' : 'CLOSED'}
-              </span>
-            </div>
-
-            {/* Admin Portal Shortcut */}
-            <Link
-              href="/admin/dashboard"
-              className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-900 rounded-lg transition-colors border border-transparent hover:border-slate-800"
-              title="Admin Portal"
+          {/* Status Pill */}
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06]">
+            <span
+              className={`w-1.5 h-1.5 rounded-full ${
+                isOpen
+                  ? 'bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]'
+                  : 'bg-red-400'
+              }`}
+            />
+            <span
+              className={`text-[11px] font-medium tracking-wide ${
+                isOpen ? 'text-emerald-400' : 'text-red-400'
+              }`}
             >
-              <Lock className="w-4 h-4" />
-            </Link>
+              {isOpen ? 'Registrations Open' : 'Closed'}
+            </span>
           </div>
         </div>
       </div>

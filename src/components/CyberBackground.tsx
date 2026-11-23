@@ -24,8 +24,7 @@ export default function CyberBackground() {
 
     window.addEventListener('resize', handleResize);
 
-    // Particle nodes
-    const particleCount = Math.min(Math.floor(width / 35), 60);
+    const particleCount = Math.min(Math.floor(width / 50), 40);
     const particles: Array<{
       x: number;
       y: number;
@@ -39,17 +38,16 @@ export default function CyberBackground() {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        radius: Math.random() * 1.5 + 0.8,
-        alpha: Math.random() * 0.5 + 0.2,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        radius: Math.random() * 1 + 0.5,
+        alpha: Math.random() * 0.3 + 0.1,
       });
     }
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Connect near particles
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
         p1.x += p1.vx;
@@ -62,7 +60,7 @@ export default function CyberBackground() {
 
         ctx.beginPath();
         ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 240, 255, ${p1.alpha})`;
+        ctx.fillStyle = `rgba(0, 200, 255, ${p1.alpha})`;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j++) {
@@ -71,12 +69,12 @@ export default function CyberBackground() {
           const dy = p1.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 130) {
+          if (dist < 150) {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(0, 240, 255, ${0.15 * (1 - dist / 130)})`;
-            ctx.lineWidth = 0.6;
+            ctx.strokeStyle = `rgba(0, 200, 255, ${0.06 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
@@ -95,12 +93,8 @@ export default function CyberBackground() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Cyber Grid Overlay */}
-      <div className="absolute inset-0 bg-cyber-grid bg-[size:40px_40px] opacity-35" />
-      {/* Radial ambient cyber glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-cyber-radial pointer-events-none" />
-      {/* Dynamic Particle Canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/5 via-transparent to-transparent" />
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-40" />
     </div>
   );
 }

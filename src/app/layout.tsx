@@ -7,8 +7,8 @@ import RecruitmentBanner from '@/components/RecruitmentBanner';
 import { EVENT_DETAILS } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Volunteer Recruitment | CyberFest 2027 • DDC CBIT',
-  description: 'Volunteer Recruitment for CyberFest 2027, organized by Digital Defence Club (DDC), Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad.',
+  title: 'Volunteer Recruitment',
+  description: 'Volunteer Recruitment for CyberFest 2027, organized by Digital Defence Club (DDC), CBIT Hyderabad.',
   keywords: [
     'Volunteer Recruitment',
     'CyberFest 2027',

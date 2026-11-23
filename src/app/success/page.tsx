@@ -5,23 +5,15 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import {
   CheckCircle2,
-  Shield,
   Copy,
   Check,
-  Printer,
   ArrowLeft,
-  Calendar,
-  User,
-  Hash,
-  Layers,
-  Sparkles,
   Loader2,
 } from 'lucide-react';
 import Image from 'next/image';
 import confetti from 'canvas-confetti';
 import { Application } from '@/types';
 import { formatToIST } from '@/lib/dateUtils';
-import { EVENT_DETAILS } from '@/lib/constants';
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -32,13 +24,12 @@ function SuccessContent() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    // Launch celebratory confetti
     try {
       confetti({
-        particleCount: 80,
-        spread: 70,
+        particleCount: 60,
+        spread: 60,
         origin: { y: 0.6 },
-        colors: ['#00f0ff', '#38bdf8', '#2563eb', '#00ff9d'],
+        colors: ['#00d4ff', '#38bdf8', '#2563eb'],
       });
     } catch {}
 
@@ -66,189 +57,135 @@ function SuccessContent() {
     }
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
-  const refId = application?.application_id || refParam || 'CF27-VOL-SUBMITTED';
+  const refId = application?.application_id || refParam || 'SUBMITTED';
 
   return (
-    <div className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto space-y-8">
-        {/* Success Header with Official Logos */}
+    <div className="py-16 px-4 sm:px-6">
+      <div className="max-w-lg mx-auto space-y-8">
+        {/* Header */}
         <div className="text-center space-y-4">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="relative w-12 h-12 rounded-full p-0.5 bg-slate-900 border border-cyan-500/40 shadow-[0_0_15px_rgba(0,240,255,0.3)]">
+          <div className="flex items-center justify-center gap-3">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden ring-1 ring-white/10">
               <Image
                 src="/images/ddc-logo-circle.png"
-                alt="Digital Defence Club"
+                alt="DDC"
                 fill
-                className="object-contain p-0.5 rounded-full"
+                className="object-contain p-0.5"
               />
             </div>
-            <div className="relative w-12 h-12 rounded-full p-0.5 bg-slate-900 border border-cyan-500/40 shadow-[0_0_15px_rgba(0,240,255,0.3)]">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden ring-1 ring-white/10">
               <Image
                 src="/images/cyberfest-logo-circle.png"
                 alt="CyberFest 2027"
                 fill
-                className="object-contain p-0.5 rounded-full"
+                className="object-contain p-0.5"
               />
             </div>
           </div>
 
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-cyan-500/10 border border-cyan-400 text-cyan-400 shadow-[0_0_30px_rgba(0,240,255,0.4)] animate-bounce">
-            <CheckCircle2 className="w-8 h-8" />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-400">
+            <CheckCircle2 className="w-7 h-7" />
           </div>
 
-          <div className="space-y-2">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400">
-              [ TRANSMISSION CONFIRMED ]
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold font-mono text-white">
-              Application Successfully Submitted!
-            </h1>
-            <p className="text-sm text-slate-400 font-sans max-w-lg mx-auto">
-              Your volunteer application for CyberFest 2027 has been securely recorded in the
-              Digital Defence Club database.
+          <div>
+            <h1 className="text-2xl font-bold text-white">Application Submitted</h1>
+            <p className="mt-1.5 text-sm text-slate-400">
+              Your volunteer application has been recorded successfully.
             </p>
           </div>
         </div>
 
-        {/* Reference ID Card */}
-        <div className="p-6 rounded-2xl bg-slate-900/90 border border-cyan-500/40 shadow-[0_0_35px_rgba(0,240,255,0.15)] relative overflow-hidden backdrop-blur-md">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 border-b border-slate-800">
+        {/* Reference ID */}
+        <div className="p-5 rounded-2xl bg-slate-900/60 border border-white/[0.06]">
+          <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
             <div>
-              <span className="text-xs font-mono text-slate-400 block">
-                APPLICATION REFERENCE ID:
-              </span>
-              <span className="text-2xl sm:text-3xl font-mono font-black text-cyan-400 tracking-wider">
+              <span className="text-xs text-slate-500 block mb-1">Reference ID</span>
+              <span className="text-xl font-bold text-cyan-400 tracking-wider">
                 {refId}
               </span>
             </div>
-
             <button
               onClick={copyRefId}
-              className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-slate-300 border border-slate-700 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] text-xs text-slate-400 border border-white/[0.06] transition-colors"
             >
               {copied ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-emerald-400">COPIED</span>
+                  <span className="text-emerald-400">Copied</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>COPY ID</span>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>Copy</span>
                 </>
               )}
             </button>
           </div>
 
-          {/* Details breakdown */}
-          <div className="mt-5 space-y-3 font-mono text-xs">
-            {isLoading ? (
-              <div className="flex items-center justify-center py-6 text-slate-400">
-                <Loader2 className="w-5 h-5 animate-spin mr-2 text-cyan-400" />
-                <span>Fetching submission credentials...</span>
+          {isLoading ? (
+            <div className="flex items-center justify-center py-6 text-slate-500">
+              <Loader2 className="w-4 h-4 animate-spin mr-2" />
+              <span className="text-sm">Loading details...</span>
+            </div>
+          ) : application ? (
+            <div className="mt-4 space-y-3 text-sm">
+              <div className="flex justify-between">
+                <span className="text-slate-500">Name</span>
+                <span className="text-white font-medium">{application.full_name}</span>
               </div>
-            ) : application ? (
-              <>
-                <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-                  <span className="text-slate-400 flex items-center space-x-2">
-                    <User className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Candidate Name:</span>
-                  </span>
-                  <span className="text-white font-bold">{application.full_name}</span>
-                </div>
-
-                <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-                  <span className="text-slate-400 flex items-center space-x-2">
-                    <Hash className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Roll Number:</span>
-                  </span>
-                  <span className="text-cyan-300 font-bold">{application.roll_number}</span>
-                </div>
-
-                <div className="flex flex-col py-1.5 border-b border-slate-800/60 gap-1.5">
-                  <span className="text-slate-400 flex items-center space-x-2">
-                    <Layers className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Selected Department(s):</span>
-                  </span>
-                  <div className="flex flex-wrap gap-1.5 pl-5">
-                    {application.areas_of_interest.map((dept, i) => (
-                      <span
-                        key={i}
-                        className="px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-[11px]"
-                      >
-                        {dept}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between py-1.5 border-b border-slate-800/60">
-                  <span className="text-slate-400 flex items-center space-x-2">
-                    <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Submission Timestamp (IST):</span>
-                  </span>
-                  <span className="text-slate-300">{formatToIST(application.created_at)}</span>
-                </div>
-
-                <div className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-400">Application Status:</span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-bold">
-                    {application.application_status}
-                  </span>
-                </div>
-              </>
-            ) : (
-              <div className="py-2 text-slate-400">
-                Application recorded. Keep your Reference ID safely for future correspondence.
+              <div className="flex justify-between">
+                <span className="text-slate-500">Roll Number</span>
+                <span className="text-slate-300">{application.roll_number}</span>
               </div>
-            )}
-          </div>
+              <div className="flex flex-col gap-1.5">
+                <span className="text-slate-500">Areas of Interest</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {application.areas_of_interest.map((dept, i) => (
+                    <span
+                      key={i}
+                      className="px-2 py-0.5 rounded-md bg-cyan-400/[0.08] border border-cyan-400/20 text-cyan-300 text-xs"
+                    >
+                      {dept}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Submitted</span>
+                <span className="text-slate-400 text-xs">{formatToIST(application.created_at)}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-slate-500">Status</span>
+                <span className="px-2 py-0.5 rounded-md bg-amber-400/10 border border-amber-400/20 text-amber-400 text-xs font-medium">
+                  {application.application_status}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <p className="mt-4 text-sm text-slate-500">
+              Save your Reference ID for future correspondence.
+            </p>
+          )}
         </div>
 
-        {/* Next Steps Card */}
-        <div className="p-6 rounded-xl bg-slate-900/60 border border-slate-800 text-xs font-mono space-y-3">
-          <span className="font-bold text-cyan-400 block uppercase tracking-wider">
-            [ RECRUITMENT TIMELINE & NEXT STEPS ]
-          </span>
-          <ol className="list-decimal list-inside space-y-2 text-slate-400 leading-relaxed">
-            <li>
-              <strong className="text-slate-200">Executive Board Review:</strong> The DDC Core Team
-              and Department Leads will evaluate applicant profiles based on branch, interest, and
-              prior background.
-            </li>
-            <li>
-              <strong className="text-slate-200">Shortlisting Announcement:</strong> Shortlisted
-              students will be contacted via college circulars and official DDC group invites.
-            </li>
-            <li>
-              <strong className="text-slate-200">Orientation & Task Briefing:</strong> Mandatory
-              conclave training and on-ground deployment rehearsals at CBIT campus.
-            </li>
-          </ol>
+        {/* What&apos;s Next */}
+        <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.04] text-sm text-slate-500 space-y-2">
+          <span className="text-xs font-medium text-slate-400 block">What happens next?</span>
+          <ul className="space-y-1.5 text-xs text-slate-500">
+            <li>• The DDC team will review all applications</li>
+            <li>• Shortlisted candidates will be contacted via official channels</li>
+            <li>• Selected volunteers will receive orientation details</li>
+          </ul>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
-          <Link
-            href="/"
-            className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-xs font-mono font-bold transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>RETURN TO HOMEPAGE</span>
-          </Link>
-
-          <button
-            onClick={handlePrint}
-            className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-black text-xs font-mono font-bold transition-all shadow-[0_0_20px_rgba(0,240,255,0.3)]"
-          >
-            <Printer className="w-4 h-4" />
-            <span>PRINT / SAVE RECEIPT</span>
-          </button>
-        </div>
+        {/* Back */}
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-sm text-slate-400 border border-white/[0.06] transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to Home</span>
+        </Link>
       </div>
     </div>
   );
@@ -258,8 +195,8 @@ export default function SuccessPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex items-center justify-center min-h-[60vh] text-cyan-400 font-mono">
-          <Loader2 className="w-8 h-8 animate-spin" />
+        <div className="flex items-center justify-center min-h-[60vh] text-slate-400">
+          <Loader2 className="w-6 h-6 animate-spin" />
         </div>
       }
     >
