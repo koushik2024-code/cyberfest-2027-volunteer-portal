@@ -1,6 +1,6 @@
 import http from 'http';
 
-const BASE_URL = process.env.LIVE_URL || 'https://cyberfest2027.vercel.app';
+const BASE_URL = process.env.LIVE_URL || 'https://cyberfest2027-volunteer-recruitment.vercel.app';
 
 async function request(path, options = {}) {
   const url = `${BASE_URL}${path}`;

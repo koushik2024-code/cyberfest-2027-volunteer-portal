@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS public.system_settings (
 -- Insert Default System Settings
 INSERT INTO public.system_settings (key, value, updated_at)
 VALUES 
-    ('recruitment_status', '{"is_open": true, "deadline": "2027-02-28T23:59:59+05:30", "announcement": "Volunteer applications for CyberFest 2027 are officially OPEN! Join the premier cyber conclave team at CBIT.", "show_live_count": true}'::jsonb, NOW())
+    ('recruitment_status', '{"is_open": true, "deadline": "2026-12-05T23:59:59+05:30", "announcement": "Volunteer applications for CyberFest 2027 are officially OPEN! Join the premier cyber conclave team at CBIT. Deadline: 05 Dec 2026.", "show_live_count": true}'::jsonb, NOW())
 ON CONFLICT (key) DO NOTHING;
 
 -- 3. Row Level Security (RLS)

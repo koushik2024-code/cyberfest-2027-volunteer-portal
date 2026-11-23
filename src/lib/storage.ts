@@ -15,8 +15,8 @@ const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json');
 
 const DEFAULT_SETTINGS: SystemSettings = {
   is_open: true,
-  deadline: '2027-02-28T23:59:59+05:30',
-  announcement: 'CyberFest 2027 Volunteer Applications are OPEN for CBIT students! Defend Beyond.',
+  deadline: '2026-12-05T23:59:59+05:30',
+  announcement: 'CyberFest 2027 Volunteer Applications are OPEN for CBIT students! Deadline: 05 Dec 2026.',
   show_live_count: true,
 };
 
