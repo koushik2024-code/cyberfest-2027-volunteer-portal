@@ -51,3 +51,6 @@ Events_extracted/
 test_tool_write.txt
 test.docx
 test.pdf
+
+.vercel
+.env*
