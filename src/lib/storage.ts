@@ -1,10 +1,15 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { Application, ApplicationStatus, DepartmentName, SystemSettings } from '@/types';
 import { getSupabaseServerClient, isSupabaseConfigured } from './supabase';
 import { generateApplicationId } from './validation';
 
-const DATA_DIR = path.join(process.cwd(), '.data');
+// Support Vercel / serverless runtime by falling back to OS tempdir when running on lambda
+const DATA_DIR =
+  process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME
+    ? path.join(os.tmpdir(), '.cyberfest_data')
+    : path.join(process.cwd(), '.data');
 const APPLICATIONS_FILE = path.join(DATA_DIR, 'applications.json');
 const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json');
 
